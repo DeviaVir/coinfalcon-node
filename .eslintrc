@@ -1,0 +1,26 @@
+{
+  "extends": "airbnb",
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "mocha": true,
+    "es6": true
+  },
+  "rules": {
+    "arrow-parens": ["error", "always"],
+    "semi": ["error", "always"],
+    "no-extra-semi": ["error"],
+    "quote-props": ["error", "always"],
+    "space-before-function-paren": ["error", "always"],
+    "comma-dangle": ["error", "never"],
+    "prefer-template": 0 // We disagree, template is for templating.
+  },
+  "globals": {
+    "log": true
+  }
+}
