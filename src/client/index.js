@@ -34,9 +34,18 @@ export default class Client {
     return hmac.digest('hex');
   }
 
+  serialize (obj) {
+    var str = [];
+    for(var p in obj)
+      if (obj.hasOwnProperty(p)) {
+        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+      }
+    return str.join("&");
+  }
+
   request (...args) {
     const method = String(args[0]).toUpperCase();
-    const requestPath = (Client.requestHasBody(method) ? args.slice(1, -1) : args.slice(1)).join('/');
+    const requestPath = (Client.requestHasBody(method) ?  args[1]: [args[1], this.serialize(args[2])].join('?'));
     const body = (Client.requestHasBody(method) ? args.slice(-1)[0] : null);
 
     const req = {
@@ -47,7 +56,7 @@ export default class Client {
       'path': '/api/' + this.version + '/' + requestPath,
       'port': 443,
       'method': method,
-      'body': body
+      'body': JSON.stringify(body)
     };
 
     if (this.version === 'v1' && requestPath.indexOf('markets/') === 0) {
