@@ -1,5 +1,5 @@
 {
-  "name": "coinfalcon",
+  "name": "coinfalcon-test",
   "description": "Simple API client for the Coinfalcon exchange",
   "homepage": "https://github.com/deviavir/coinfalcon-node",
   "version": "v1.0.1",
@@ -42,7 +42,9 @@
     "tape-catch": "^1.0.6",
     "tape-nock": "^1.6.0"
   },
-  "dependencies": {},
+  "dependencies": {
+    "request": "^2.83.0"
+  },
   "keywords": [
     "coinfalcon",
     "coinfalcon.com",
