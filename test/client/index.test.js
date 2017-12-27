@@ -70,7 +70,6 @@ test('new client - request - header token', (t) => {
   httpsrequest.reset();
   return coinfalconClient.request('get', 'resource_path').then(() => {
     t.equal(httpsrequest.getCall(0).args[0].headers['CF-API-KEY'], 'CUSTOM_KEY', 'headers.CF-API-KEY should include key');
-    t.equal(httpsrequest.getCall(0).args[0].headers['CF-API-SECRET'], 'CUSTOM_SECRET', 'headers.CF-API-SECRET should include key');
     t.end();
   });
 });
