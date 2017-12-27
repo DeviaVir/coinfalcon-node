@@ -28,10 +28,11 @@ export default class Client {
     return this.request(...['delete'].concat(...args));
   }
 
-  signature (...args) {
+  signature (timestamp, method, requestPath, bodyConst) {
+    let body = {};
+    if (bodyConst) body = bodyConst;
     const hmac = crypto.createHmac('sha256', this.secret);
-    if (!args[3]) args[3] = {};
-    hmac.update(`${args[0]}|${args[1]}|/api/${this.version}/${args[2]}` + (args[1] !== 'GET' ? `|${JSON.stringify(args[3])}` : ''));
+    hmac.update(`${timestamp}|${method}|/api/${this.version}/${requestPath}` + (method != 'GET' ? `|${JSON.stringify(body)}` : ''));
     return hmac.digest('hex');
   }
 
