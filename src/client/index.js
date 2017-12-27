@@ -28,9 +28,10 @@ export default class Client {
     return this.request(...['delete'].concat(...args));
   }
 
-  signature (...args) {
+  signature (timestamp, method, requestPath, body) {
     const hmac = crypto.createHmac('sha256', this.secret);
-    hmac.update(`${args[0]}|/api/${this.version}/${args[1]}|` + (args[2] ? `${JSON.stringify(args[2])}` : '{}'));
+    if (!body) body = {};
+    hmac.update(`${timestamp}|${method}|/api/${this.version}/${requestPath}` + (method != 'GET' ? `|${JSON.stringify(body)}` : ''));
     return hmac.digest('hex');
   }
 
@@ -53,13 +54,12 @@ export default class Client {
     if (this.version === 'v1' && requestPath.indexOf('markets/') === 0) {
       // public request
     } else {
-      const signature = this.signature(method, requestPath, body);
       let timestamp = Date.now().toString();
-      timestamp = timestamp.substring(0, timestamp.length - 3);
+      timestamp = parseInt(timestamp.substring(0, timestamp.length - 3), 10);
+      const signature = this.signature(timestamp, method, requestPath, body);
 
       req.headers['CF-API-KEY'] = this.key;
-      req.headers['CF-API-SECRET'] = this.secret;
-      req.headers['CF-API-TIMESTAMP'] = parseInt(timestamp, 10);
+      req.headers['CF-API-TIMESTAMP'] = timestamp;
       req.headers['CF-API-SIGNATURE'] = signature;
     }
 
