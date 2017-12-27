@@ -34,7 +34,7 @@ export default class Client {
       body = bodyConst;
     }
     const hmac = crypto.createHmac('sha256', this.secret);
-    hmac.update(`${timestamp}|${method}|/api/${this.version}/${requestPath}` + (method != 'GET' ? `|${JSON.stringify(body)}` : ''));
+    hmac.update(`${timestamp}|${method}|/api/${this.version}/${requestPath}` + (method !== 'GET' ? `|${JSON.stringify(body)}` : ''));
     return hmac.digest('hex');
   }
 
