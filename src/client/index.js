@@ -40,7 +40,7 @@ export default class Client {
 
   request (...args) {
     const method = String(args[0]).toUpperCase();
-    const requestPath = (Client.requestHasBody(method) ? args.slice(1, -1) : args.slice(1)).join('/');
+    const requestPath = Client.requestHasBody(method) ? args.slice(1, -1).join('/') : Client.appendObjectAsQuery(args[1], args[2]);
     const body = (Client.requestHasBody(method) ? args.slice(-1)[0] : null);
 
     const req = {
@@ -71,5 +71,29 @@ export default class Client {
 
   static requestHasBody (method) {
     return method === 'POST' || method === 'PATCH';
+  }
+
+  static appendObjectAsQuery(base, body) {
+    let url = base;
+
+    if (url.indexOf('?') == -1) {
+      url += "?";
+    } else {
+      if(url.charAt(url.length - 1) != "&") {
+        url += "&";
+      }
+    }
+
+    for (let dataItem in body) {
+        if (body.hasOwnProperty(dataItem)) {
+            url += encodeURIComponent(dataItem) + "=" + encodeURIComponent(body[dataItem]) + "&";
+        }
+    }
+
+    if(url.charAt(url.length - 1)){
+      url = url.substr(0, url.length - 1);
+    }
+
+    return url;
   }
 }
