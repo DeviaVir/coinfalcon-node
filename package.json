@@ -2,7 +2,7 @@
   "name": "coinfalcon",
   "description": "Simple API client for the Coinfalcon exchange",
   "homepage": "https://github.com/deviavir/coinfalcon-node",
-  "version": "v1.0.2",
+  "version": "v1.0.3",
   "main": "dist",
   "scripts": {
     "build": "babel src -s -D -d dist",
