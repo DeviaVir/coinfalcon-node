@@ -71,24 +71,24 @@ export default class Client {
     return method === 'POST' || method === 'PATCH';
   }
 
-  static appendObjectAsQuery(base, body) {
+  static appendObjectAsQuery (base, body) {
     let url = base;
 
-    if (url.indexOf('?') == -1) {
-      url += "?";
-    } else {
-      if(url.charAt(url.length - 1) != "&") {
-        url += "&";
-      }
+    if (url.indexOf('?') === -1) {
+      url += '?';
+    } else if (url.charAt(url.length - 1) !== '&') {
+      url += '&';
     }
 
-    for (let dataItem in body) {
-        if (body.hasOwnProperty(dataItem)) {
-            url += encodeURIComponent(dataItem) + "=" + encodeURIComponent(body[dataItem]) + "&";
-        }
+    function addToUrl (key, value) {
+      url += encodeURIComponent(key) + '=' + encodeURIComponent(value) + '&';
     }
 
-    if(url.charAt(url.length - 1)){
+    if (body) {
+      Object.entries(body).forEach(addToUrl);
+    }
+
+    if (url.charAt(url.length - 1)) {
       url = url.substr(0, url.length - 1);
     }
 
