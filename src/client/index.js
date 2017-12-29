@@ -80,8 +80,8 @@ export default class Client {
       url += '&';
     }
 
-    function addToUrl (key, value) {
-      url += encodeURIComponent(key) + '=' + encodeURIComponent(value) + '&';
+    function addToUrl (entry) {
+      url += encodeURIComponent(entry[0]) + '=' + encodeURIComponent(entry[1]) + '&';
     }
 
     if (body) {
