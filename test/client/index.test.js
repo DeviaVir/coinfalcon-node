@@ -26,7 +26,6 @@ test('new client - request stubbing', (t) => {
 
 test('new client - get', (t) => {
   requestStub.resetHistory();
-  console.log(coinfalconClient.request)
   return coinfalconClient.get('resource_path').then(() => {
     t.equal(coinfalconClient.request.callCount, 1, 'should be called one time');
     t.equal(coinfalconClient.request.getCall(0).args[0], 'get', 'first argument should be get');
