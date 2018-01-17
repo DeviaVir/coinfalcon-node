@@ -25,7 +25,8 @@ test('new client - request stubbing', (t) => {
 });
 
 test('new client - get', (t) => {
-  requestStub.reset();
+  requestStub.resetHistory();
+  console.log(coinfalconClient.request)
   return coinfalconClient.get('resource_path').then(() => {
     t.equal(coinfalconClient.request.callCount, 1, 'should be called one time');
     t.equal(coinfalconClient.request.getCall(0).args[0], 'get', 'first argument should be get');
@@ -35,7 +36,7 @@ test('new client - get', (t) => {
 });
 
 test('new client - post', (t) => {
-  requestStub.reset();
+  requestStub.resetHistory();
   return coinfalconClient.post('resource_path', { 'body': true }).then(() => {
     t.equal(coinfalconClient.request.callCount, 1, 'should be called one time');
     t.equal(coinfalconClient.request.getCall(0).args[0], 'post', 'first argument should be post');
@@ -58,7 +59,7 @@ test('new client - https stub', (t) => {
 });
 
 test('new client - request - hostname', (t) => {
-  httpsrequest.reset();
+  httpsrequest.resetHistory();
   return coinfalconClient.request('get', 'resource_path').then(() => {
     t.equal(httpsrequest.callCount, 1, 'should be called one time');
     t.equal(httpsrequest.getCall(0).args[0].hostname, 'coinfalcon.com', 'hostname should be coinfalcon.com');
@@ -67,7 +68,7 @@ test('new client - request - hostname', (t) => {
 });
 
 test('new client - request - header token', (t) => {
-  httpsrequest.reset();
+  httpsrequest.resetHistory();
   return coinfalconClient.request('get', 'resource_path').then(() => {
     t.equal(httpsrequest.getCall(0).args[0].headers['CF-API-KEY'], 'CUSTOM_KEY', 'headers.CF-API-KEY should include key');
     t.end();
@@ -75,7 +76,7 @@ test('new client - request - header token', (t) => {
 });
 
 test('new client - request - header content-type', (t) => {
-  httpsrequest.reset();
+  httpsrequest.resetHistory();
   return coinfalconClient.request('get', 'resource_path').then(() => {
     t.equal(httpsrequest.getCall(0).args[0].headers['Content-Type'], 'application/json; charset=utf-8', 'headers.Content-Type should include JSON');
     t.end();
@@ -83,7 +84,7 @@ test('new client - request - header content-type', (t) => {
 });
 
 test('new client - request - path', (t) => {
-  httpsrequest.reset();
+  httpsrequest.resetHistory();
   return coinfalconClient.request('get', 'resource_path').then(() => {
     t.equal(httpsrequest.getCall(0).args[0].path, '/api/v1/resource_path', 'path should be set to resource_path with version including format');
     t.end();
@@ -91,7 +92,7 @@ test('new client - request - path', (t) => {
 });
 
 test('new client - request - path post', (t) => {
-  httpsrequest.reset();
+  httpsrequest.resetHistory();
   return coinfalconClient.request('post', 'resource_path', {}).then(() => {
     t.equal(httpsrequest.getCall(0).args[0].path, '/api/v1/resource_path', 'path should be set to resource_path with version including format');
     t.end();
@@ -99,7 +100,7 @@ test('new client - request - path post', (t) => {
 });
 
 test('new client - request - port', (t) => {
-  httpsrequest.reset();
+  httpsrequest.resetHistory();
   return coinfalconClient.request('get', 'resource_path').then(() => {
     t.equal(httpsrequest.getCall(0).args[0].port, 443, 'port should always be set to SSL');
     t.end();
@@ -107,7 +108,7 @@ test('new client - request - port', (t) => {
 });
 
 test('new client - request - method', (t) => {
-  httpsrequest.reset();
+  httpsrequest.resetHistory();
   return coinfalconClient.request('get', 'resource_path').then(() => {
     t.equal(httpsrequest.getCall(0).args[0].method, 'GET', 'should be uppercase');
     t.end();
@@ -115,7 +116,7 @@ test('new client - request - method', (t) => {
 });
 
 test('new client - request - method post', (t) => {
-  httpsrequest.reset();
+  httpsrequest.resetHistory();
   return coinfalconClient.request('post', 'resource_path', {}).then(() => {
     t.equal(httpsrequest.getCall(0).args[0].method, 'POST', 'should be uppercase');
     t.end();
@@ -123,7 +124,7 @@ test('new client - request - method post', (t) => {
 });
 
 test('new client - request - body', (t) => {
-  httpsrequest.reset();
+  httpsrequest.resetHistory();
   return coinfalconClient.request('get', 'resource_path').then(() => {
     t.equal(httpsrequest.getCall(0).args[0].body, null);
     t.end();
@@ -131,7 +132,7 @@ test('new client - request - body', (t) => {
 });
 
 test('new client - request - body on post', (t) => {
-  httpsrequest.reset();
+  httpsrequest.resetHistory();
   return coinfalconClient.request('post', 'resource_path', { 'body': true }).then(() => {
     t.deepEqual(httpsrequest.getCall(0).args[0].body, { 'body' : true });
     t.end();
@@ -139,7 +140,7 @@ test('new client - request - body on post', (t) => {
 });
 
 test('new client - request - body on patch', (t) => {
-  httpsrequest.reset();
+  httpsrequest.resetHistory();
   return coinfalconClient.request('patch', 'resource_path', { 'body': true }).then(() => {
     t.deepEqual(httpsrequest.getCall(0).args[0].body, { 'body' : true });
     t.end();
