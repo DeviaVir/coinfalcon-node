@@ -1,7 +1,4 @@
-Node.js module for Coinfalcon.com API [![Build Status](https://secure.travis-ci.org/DeviaVir/coinfalcon-node.png?branch=master)](https://travis-ci.org/DeviaVir/coinfalcon-node.svg?branch=master) [![Greenkeeper badge](https://badges.greenkeeper.io/DeviaVir/coinfalcon-node.svg)](https://greenkeeper.io/)
-===========
-
-# Coinfalcon
+# Coinfalcon [![Build Status](https://secure.travis-ci.org/DeviaVir/coinfalcon-node.png?branch=master)](https://travis-ci.org/DeviaVir/coinfalcon-node.svg?branch=master) [![Greenkeeper badge](https://badges.greenkeeper.io/DeviaVir/coinfalcon-node.svg)](https://greenkeeper.io/)
 
 With this Node module you can plug into the no-fees and fast [Coinfalcon](https://coinfalcon.com/).
 
