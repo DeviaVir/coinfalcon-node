@@ -12,7 +12,7 @@ With this Node module you can plug into the no-fees and fast [Coinfalcon](https:
 
 ## Getting Started
 
-First you need to sign-up for a [Coinfalcon](https://coinfalcon.com/sign_up) account and obtain your unique **API Key** and **API Secret**. You will find both under [API](https://coinfalcon.com/settings/applications). Once you have set up your account, you can start using Coinfalcon's API client in your applications.
+First you need to sign-up for a [Coinfalcon](https://coinfalcon.com/sign_up) account and obtain your unique **API Key** and **API Secret**. You will find both under [API](https://coinfalcon.com/settings/applications). Once you have set up your account, you can start using Coinfalcon's API client in your applications. You can find all API calls and parameters on [Coinfalcon's API documentation page](https://docs.coinfalcon.com/).
 
 ## Example requests
 
