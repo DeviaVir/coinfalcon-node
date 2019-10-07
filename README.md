@@ -14,26 +14,27 @@ With this Node module you can plug into the no-fees and fast [Coinfalcon](https:
 
 First you need to sign-up for a [Coinfalcon](https://coinfalcon.com/sign_up) account and obtain your unique **API Key** and **API Secret**. You will find both under [API](https://coinfalcon.com/settings/applications). Once you have set up your account, you can start using Coinfalcon's API client in your applications. You can find all API calls and parameters on [Coinfalcon's API documentation page](https://docs.coinfalcon.com/).
 
-## Example requests
+## Example usage
 
+npm i --save coinfalcon
+
+`client.js`:
 ```
-import { Client } from 'coinfalcon'
+const client = require('coinfalcon')
 
-const coinfalconClient = new Client('KEY', 'SECRET');
+const coinfalconClient = new client.Client('KEY', 'SECRET');
+
 coinfalconClient.get('markets/BTC-EUR/trades').then(res => {
   console.log('fetched!', res);
 }).catch(err => {
   console.log('Whoops, something went wrong!', err);
 });
-```
 
-```
-import { Client } from 'coinfalcon'
-
-const coinfalconClient = new Client('KEY', 'SECRET');
 coinfalconClient.get('user/orders', {'market': 'BTC-EUR'}).then(res => {
   console.log('fetched!', res);
 }).catch(err => {
   console.log('Whoops, something went wrong!', err);
 });
 ```
+
+`node client.js` 
