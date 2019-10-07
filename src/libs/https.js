@@ -2,14 +2,15 @@ import https from 'https';
 
 export default class customHttps {
   static request (options) {
-    const requestParams = Object.assign({}, options);
+    const requestParams = { ...options };
     return new Promise((resolve, reject) => {
       if (('body' in requestParams) === true && requestParams.body !== null) {
         requestParams.body = JSON.stringify(requestParams.body);
-        requestParams.headers = Object.assign({
+        requestParams.headers = {
           'Content-Type': 'application/json',
-          'Content-Length': Buffer.byteLength(requestParams.body)
-        }, requestParams.headers);
+          'Content-Length': Buffer.byteLength(requestParams.body),
+          ...requestParams.headers
+        };
       }
 
       const request = https.request(requestParams, (response) => {
