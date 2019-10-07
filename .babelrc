@@ -1,12 +1,3 @@
 {
-  "env": {
-    "production": {
-      "plugins": ["transform-runtime"],
-      "presets": ["es2015", "stage-0"]
-    },
-    "development": {
-      "plugins": ["transform-runtime", "istanbul"],
-      "presets": ["es2015", "stage-0"]
-    }
-  }
+  "presets": ["@babel/preset-env"]
 }
